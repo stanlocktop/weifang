@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>TECTOR | Agricultural Equipment</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent:      #C0FF00;
+      --accent-dark: #9ACC00;
+      --bg:          #0A0A0A;
+      --bg-card:     #161616;
+      --border:      #262626;
+      --text-muted:  #888;
+      --radius-card: 1.5rem;
+      --radius-btn:  50px;
+
+      --h1-size:   clamp(2rem,   6vw,  5.5rem);
+      --h2-size:   clamp(1.7rem, 4vw,  3.5rem);
+      --body-size: clamp(0.875rem, 1.4vw, 1.125rem);
+      --small-size:clamp(0.7rem,  0.9vw, 0.85rem);
+
+      --section-py: clamp(3rem, 8vw, 9rem);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: #fff;
+      font-size: var(--body-size);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container-site {
+      width: 100%;
+      max-width: min(1800px, 92vw);
+      margin-inline: auto;
+      padding-inline: clamp(1rem, 4vw, 3rem);
+    }
+
+    .accent-text { color: var(--accent); }
+    .accent-bg   { background-color: var(--accent); color: #000; }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: #000;
+      font-weight: 800;
+      border: none;
+      border-radius: var(--radius-btn);
+      padding: clamp(.55rem, 1.5vw, 1rem) clamp(1.2rem, 3vw, 2.5rem);
+      font-size: clamp(.78rem, 1.15vw, 1rem);
+      transition: opacity .25s, transform .25s;
+      white-space: nowrap;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      line-height: 1.5;
+    }
+    .btn-accent:hover { opacity: .88; transform: translateY(-2px); color: #000; }
+
+    .btn-outline-acc {
+      background: transparent;
+      color: #fff;
+      font-weight: 700;
+      border: 1px solid #444;
+      border-radius: var(--radius-btn);
+      padding: clamp(.55rem, 1.5vw, 1rem) clamp(1.2rem, 3vw, 2.5rem);
+      font-size: clamp(.78rem, 1.15vw, 1rem);
+      transition: border-color .25s, color .25s;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
+      line-height: 1.5;
+    }
+    .btn-outline-acc:hover { border-color: var(--accent); color: var(--accent); }
+
+    /*навигация*/
+    .site-nav {
+      padding-block: clamp(1rem, 2.5vw, 1.8rem);
+      /* поддержка эпл */
+      padding-left:  max(env(safe-area-inset-left),  clamp(1rem,4vw,3rem));
+      padding-right: max(env(safe-area-inset-right), clamp(1rem,4vw,3rem));
+    }
+
+    .logo {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      color: #fff;
+      text-decoration: none;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(1rem, 3vw, 3rem);
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+    .nav-links a {
+      font-size: clamp(.65rem, .9vw, .78rem);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .lang-switch {
+      border: 1px solid #2a2a2a;
+      border-radius: 50px;
+      padding: 4px 14px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: clamp(.62rem, .85vw, .72rem);
+      flex-shrink: 0;
+    }
+    .lang-btn { cursor: pointer; opacity: .45; font-weight: 700; transition: opacity .2s, color .2s; user-select: none; }
+    .lang-btn.active { opacity: 1; color: var(--accent); }
+    .lang-sep { color: #333; }
+
+    /* гамбургер */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: #fff; border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: .9rem;
+      padding: 1.4rem 0 .8rem;
+      border-top: 1px solid var(--border);
+      margin-top: .8rem;
+    }
+    .mobile-menu a {
+      font-size: .82rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: #fff; }
+    .mobile-menu.open { display: flex; }
+
+    /* главный блок */
+    .hero-section { padding-block: var(--section-py); }
+
+    .hero-label {
+      font-size: clamp(.62rem, .9vw, .72rem);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: clamp(.6rem, 1.5vw, 1.2rem);
+    }
+    .hero-title {
+      font-size: var(--h1-size);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -.025em;
+      margin-bottom: clamp(.8rem, 2vw, 1.6rem);
+    }
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: clamp(.875rem, 1.4vw, 1.1rem);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: clamp(1.2rem, 2.5vw, 2.2rem);
+    }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: clamp(.5rem, 1.2vw, .9rem); }
+
+    .hero-img-wrap {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: .85; }
+
+    /* стата */
+    .stats-section {
+      padding-block: clamp(2.5rem, 6vw, 6rem);
+      border-top: 1px solid var(--border);
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: clamp(1.3rem, 3vw, 2.8rem) clamp(.8rem, 2vw, 1.8rem);
+      text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(1.9rem, 3.5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: .45rem;
+    }
+    .stat-label {
+      font-size: clamp(.6rem, .85vw, .72rem);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    /* каталог */
+    .catalog-section {
+      padding-block: var(--section-py);
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: clamp(.62rem, .9vw, .72rem);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: var(--h2-size);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: clamp(1.8rem, 4.5vw, 4rem);
+    }
+
+    .tractor-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+      cursor: pointer;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .tractor-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 64px rgba(192,255,0,.07);
+    }
+    .tc-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      background: #111;
+      flex-shrink: 0;
+    }
+    .tc-body {
+      padding: clamp(.9rem, 2.2vw, 1.5rem);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .tc-model {
+      font-size: clamp(.58rem, .82vw, .68rem);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .35rem;
+    }
+    .tc-name {
+      font-size: clamp(1rem, 1.7vw, 1.3rem);
+      font-weight: 800;
+      margin-bottom: .4rem;
+      line-height: 1.2;
+    }
+    .tc-desc {
+      font-size: clamp(.75rem, 1.05vw, .85rem);
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: .9rem;
+    }
+    .btn-specs {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: clamp(.7rem, .95vw, .78rem);
+      font-weight: 700;
+      border: 1px solid #333;
+      border-radius: 50px;
+      padding: .45rem 1rem;
+      color: #fff;
+      background: none;
+      cursor: pointer;
+      transition: border-color .25s, color .25s;
+      align-self: flex-start;
+    }
+    .btn-specs:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* CTA */
+    .cta-section { padding-block: clamp(2rem, 5vw, 5rem); }
+    .cta-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: clamp(1.5rem, 4vw, 3rem);
+      padding: clamp(1.8rem, 5vw, 4rem) clamp(1.4rem, 5vw, 4rem);
+    }
+    .cta-title {
+      font-size: clamp(1.4rem, 3.2vw, 2.7rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+    }
+    .cta-desc { color: var(--text-muted); font-size: clamp(.82rem, 1.2vw, 1rem); }
+
+    /* подвал */
+    .site-footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding-block: clamp(3rem, 7vw, 7rem);
+      padding-bottom: max(env(safe-area-inset-bottom), clamp(3rem, 7vw, 7rem));
+    }
+    .footer-logo { font-size: clamp(1.2rem, 2.4vw, 1.9rem); font-weight: 900; letter-spacing: -.03em; margin-bottom: .9rem; }
+    .footer-muted { color: #555; font-size: clamp(.72rem, .95vw, .85rem); line-height: 1.7; }
+    .footer-head { font-size: clamp(.58rem, .82vw, .68rem); letter-spacing: .18em; text-transform: uppercase; color: #444; margin-bottom: 1.1rem; font-weight: 700; }
+    .footer-link { color: #ccc; text-decoration: none; font-size: clamp(.78rem, 1vw, .88rem); transition: color .2s; }
+    .footer-link:hover { color: var(--accent); }
+
+    /* модели */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(.8rem, 3vw, 2.5rem);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid #2a2a2a;
+      border-radius: clamp(1rem, 2.5vw, 2rem);
+      width: 100%;
+      max-width: min(720px, 96vw);
+      max-height: 92dvh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalIn .28s cubic-bezier(.34,1.4,.64,1);
+      overscroll-behavior: contain;
+    }
+    .modal-box::-webkit-scrollbar { width: 4px; }
+    .modal-box::-webkit-scrollbar-track { background: transparent; }
+    .modal-box::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(.93) translateY(18px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-hero-img {
+      width: 100%; aspect-ratio: 16/8; object-fit: cover;
+      border-radius: clamp(1rem, 2.5vw, 2rem) clamp(1rem, 2.5vw, 2rem) 0 0;
+      background: #111; display: block;
+    }
+    .modal-body-inner {
+      padding: clamp(1.1rem, 3.5vw, 2rem) clamp(1.3rem, 4vw, 2.4rem) clamp(1.6rem, 4vw, 2.6rem);
+    }
+    .modal-close {
+      position: absolute;
+      top: clamp(10px, 1.8vw, 16px); right: clamp(10px, 1.8vw, 16px);
+      width: clamp(30px, 3.5vw, 40px); height: clamp(30px, 3.5vw, 40px);
+      background: rgba(0,0,0,.55); border: 1px solid #333; border-radius: 50%;
+      color: #fff; font-size: clamp(12px, 1.5vw, 16px);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color .25s, color .25s; z-index: 10; line-height: 1;
+    }
+    .modal-close:hover { border-color: var(--accent); color: var(--accent); }
+
+    .modal-tag   { font-size: clamp(.58rem, .82vw, .68rem); letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: .35rem; }
+    .modal-title { font-size: clamp(1.35rem, 2.8vw, 1.9rem); font-weight: 900; margin-bottom: .55rem; letter-spacing: -.02em; }
+    .modal-desc  { color: var(--text-muted); font-size: clamp(.8rem, 1.15vw, .92rem); line-height: 1.7; margin-bottom: 1.2rem; }
+
+    .spec-section-title {
+      font-size: clamp(.58rem, .82vw, .68rem);
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--accent); margin-top: 1.1rem; margin-bottom: .2rem; font-weight: 700;
+    }
+    .spec-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .6rem 0; border-bottom: 1px solid #1e1e1e; gap: 1rem;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label { color: #666; font-size: clamp(.75rem, 1.05vw, .85rem); }
+    .spec-value { font-weight: 700; font-size: clamp(.75rem, 1.05vw, .85rem); text-align: right; }
+
+    /* адаптация под устройства */
+
+    /* (320–575px) */
+    @media (max-width: 575.98px) {
+      .hamburger { display: flex; }
+      .nav-desktop { display: none !important; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns a { width: 100%; text-align: center; }
+      .cta-box { text-align: center; }
+      .cta-box .d-flex { flex-direction: column; align-items: center !important; }
+    }
+
+    /* (576–767px) */
+    @media (min-width: 576px) and (max-width: 767.98px) {
+      .hamburger { display: flex; }
+      .nav-desktop { display: none !important; }
+    }
+
+    @media (min-width: 768px) {
+      .hamburger { display: none !important; }
+      .mobile-menu { display: none !important; }
+    }
+
+    /* ПК */
+    @media (min-width: 1200px) {
+      .hero-img-wrap { aspect-ratio: 4/3; }
+    }
+
+    /* Full HD */
+    @media (min-width: 1920px) {
+      .tc-img { aspect-ratio: 16/9; }
+      .modal-box { max-width: min(900px, 55vw); }
+    }
+
+    /* 4K / 2560px+ */
+    @media (min-width: 2560px) {
+      .container-site { max-width: min(2400px, 88vw); }
+      .hero-title { font-size: clamp(6rem, 6vw, 10rem); }
+      .modal-box { max-width: min(1100px, 48vw); }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero-section { padding-block: 1.5rem; }
+      .hero-img-wrap { display: none; }
+      .modal-box { max-height: 98dvh; }
+    }
+
+    @media (hover: none) {
+      .tractor-card:hover { transform: none; }
+      .btn-accent:hover   { transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+
+    @media (forced-colors: active) {
+      .accent-text { color: Highlight; }
+      .btn-accent  { background: Highlight; color: HighlightText; }
+      .tractor-card, .cta-box { border-color: ButtonText; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- навигация -->
+  <nav class="site-nav">
+    <div class="container-site">
+      <div class="d-flex align-items-center justify-content-between gap-3">
+
+        <a href="#" class="logo">TECTOR<span class="accent-text">.</span></a>
+
+        <!-- ПК ссылки -->
+        <ul class="nav-links nav-desktop">
+          <li><a href="#about"    data-key="nav_about">About</a></li>
+          <li><a href="#catalog"  data-key="nav_catalog">Catalog</a></li>
+          <li><a href="#contacts" data-key="nav_contacts">Contacts</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2 gap-md-3">
+          <div class="lang-switch">
+            <span onclick="setLang('en')" id="btn-en" class="lang-btn active">EN</span>
+            <span class="lang-sep">|</span>
+            <span onclick="setLang('zh')" id="btn-zh" class="lang-btn">ZH</span>
+          </div>
+          <a href="tel:13963649452" data-key="btn_contact"
+             class="btn-accent d-none d-sm-inline-block">Contact Us</a>
+          <div class="hamburger" id="hamburger" onclick="toggleMenu()"
+               role="button" tabindex="0" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- меню мобила -->
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="#about"    data-key="nav_about"    onclick="closeMenu()">About</a>
+        <a href="#catalog"  data-key="nav_catalog"  onclick="closeMenu()">Catalog</a>
+        <a href="#contacts" data-key="nav_contacts" onclick="closeMenu()">Contacts</a>
+        <a href="tel:13963649452" data-key="btn_contact"
+           class="btn-accent mt-2" style="width:fit-content">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- главный блок -->
+  <section id="about" class="hero-section">
+    <div class="container-site">
+      <div class="row align-items-center gy-5">
+        <div class="col-12 col-lg-6 col-xxl-5">
+          <p class="hero-label" data-key="hero_sub">Professional Machinery</p>
+          <h1 class="hero-title">
+            <span data-key="hero_title_1">Power for fields.</span><br>
+            <span class="accent-text" data-key="hero_title_2">Precision for business.</span>
+          </h1>
+          <p class="hero-desc" data-key="hero_desc">
+            High-performance tractors from WEIFANG TECTOR AGRICULTURAL EQUIPMENT CO., LTD. Reliable quality for modern farming.
+          </p>
+          <div class="hero-btns">
+            <a href="#catalog"  data-key="btn_models" class="btn-accent">View Models</a>
+            <a href="#contacts" data-key="btn_price"  class="btn-outline-acc">Get Price List</a>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xxl-7 ps-lg-4 ps-xxl-5">
+          <div class="hero-img-wrap">
+            <img src="img/1.jpg" alt="TECTOR Tractor"
+                 onerror="this.style.opacity='0'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- стата -->
+  <section class="stats-section">
+    <div class="container-site">
+      <div class="row g-3 g-md-4">
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-number">0+</div>
+            <div class="stat-label" data-key="stat_years">Years Experience</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label" data-key="stat_quality">Quality Control</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-number">0+</div>
+            <div class="stat-label" data-key="stat_models">Models</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label" data-key="stat_support">Support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- каталог -->
+  <section id="catalog" class="catalog-section">
+    <div class="container-site">
+      <p class="section-label" data-key="catalog_sub">Our Equipment</p>
+      <h2 class="section-title">
+        Product&nbsp;<span class="accent-text" data-key="catalog_title_acc">Catalog</span>
+      </h2>
+      <div class="row g-3 g-md-4 g-xl-4" id="catalog-grid"></div>
+    </div>
+  </section>
+
+  <!--CTA -->
+  <section id="contacts" class="cta-section">
+    <div class="container-site">
+      <div class="cta-box">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
+          <div>
+            <h2 class="cta-title mb-2" data-key="cta_title">Ready to upgrade your farm?</h2>
+            <p class="cta-desc mb-0" data-key="cta_desc">Leave a request and get a consultation from our engineers.</p>
+          </div>
+          <div class="flex-shrink-0">
+            <button data-key="btn_request" onclick="window.location.href='#'"
+                    class="btn-accent"
+                    style="padding: clamp(.8rem,2vw,1.2rem) clamp(1.5rem,3vw,2.8rem);
+                           font-size: clamp(.88rem,1.3vw,1.05rem);
+                           border-radius: 1rem;">
+              Request Callback
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- подвал -->
+  <footer class="site-footer">
+    <div class="container-site">
+      <div class="row gy-5">
+        <div class="col-12 col-md-4">
+          <div class="footer-logo">TECTOR<span class="accent-text">.</span></div>
+          <p class="footer-muted" data-key="footer_name">WEIFANG TECTOR AGRICULTURAL EQUIPMENT CO., LTD.</p>
+        </div>
+        <div class="col-6 col-md-4">
+          <p class="footer-head" data-key="footer_contact_h">Contacts</p>
+          <p class="mb-2"><a href="tel:13963649452" class="footer-link">+86 13963649452</a></p>
+          <p class="footer-muted" data-key="footer_city">Weifang, China</p>
+        </div>
+        <div class="col-6 col-md-4">
+          <p class="footer-head" data-key="footer_addr_h">Address</p>
+          <p class="footer-muted" data-key="footer_addr">
+            120 METERS SOUTHWEST OF XINZHUANG VILLAGE COMMITTEE, WEICHENG, WEIFANG
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- модели -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&#x2715;</button>
+      <img id="modal-img" src="" alt="" class="modal-hero-img">
+      <div class="modal-body-inner">
+        <div id="modal-tag"      class="modal-tag"></div>
+        <h2  id="modal-title-el" class="modal-title"></h2>
+        <p   id="modal-desc"     class="modal-desc"></p>
+        <div id="modal-specs"></div>
+        <a href="#contacts" onclick="closeModal()" data-key="btn_inquire"
+           class="btn-accent d-inline-block mt-4">Request a Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+const tractors = [
+
+    // ТРАКТОР 1 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
+    { id:1, img:"img/1.jpg",
+      en:{ model:"— Model —",      // название модели (напр. "Model TX-504")
+           name:"— Tractor Name —", // полное название (напр. "TECTOR TX-504")
+           desc:"— Description —",  // краткое описание на английском
+           specs:{
+             "Engine":{
+               "Power":        "—",   //напр. "50 HP / 37 kW"
+               "Cylinders":    "—",   // напр. "4"
+               "Displacement": "—",   // напр. "2.5 L"
+               "Fuel type":    "—"    // напр. "Diesel"
+             },
+             "Transmission":{
+               "Gearbox": "—",        // напр. "8F + 8R"
+               "Drive":   "—"         // напр. "4WD"
+             },
+             "Dimensions":{
+               "Weight":           "—", // напр. "2 100 kg"
+               "Wheelbase":        "—", // напр. "1 950 mm"
+               "Ground clearance": "—"  // напр. "310 mm"
+             },
+             "Hydraulics":{
+               "Lift capacity": "—",    // напр. "1 600 kg"
+               "PTO speed":     "—"     // напр. "540 / 1000 rpm"
+             }
+           }
+      },
+      zh:{ model:"— 型号 —",       // название модели на китайском
+           name:"— 拖拉机名称 —",   // полное название на китайском
+           desc:"— 描述 —",         // описание на китайском
+           specs:{
+             "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
+             "变速箱":{ "档位":"—", "驱动方式":"—" },
+             "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
+             "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           }
+      }
+    },
+
+    // ТРАКТОР 2 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
+    { id:2, img:"img/2.jpg",
+      en:{ model:"— Model —",
+           name:"— Tractor Name —",
+           desc:"— Description —",
+           specs:{
+             "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
+             "Transmission":{ "Gearbox":"—", "Drive":"—" },
+             "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
+             "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           }
+      },
+      zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+           specs:{
+             "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
+             "变速箱":{ "档位":"—", "驱动方式":"—" },
+             "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
+             "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           }
+      }
+    },
+
+    // ТРАКТОР 3 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
+    { id:3, img:"img/3.jpg",
+      en:{ model:"— Model —",
+           name:"— Tractor Name —",
+           desc:"— Description —",
+           specs:{
+             "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
+             "Transmission":{ "Gearbox":"—", "Drive":"—" },
+             "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
+             "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           }
+      },
+      zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+           specs:{
+             "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
+             "变速箱":{ "档位":"—", "驱动方式":"—" },
+             "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
+             "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           }
+      }
+    },
+
+    // ТРАКТОР 4 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
+    { id:4, img:"img/4.jpg",
+      en:{ model:"— Model —",
+           name:"— Tractor Name —",
+           desc:"— Description —",
+           specs:{
+             "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
+             "Transmission":{ "Gearbox":"—", "Drive":"—" },
+             "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
+             "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           }
+      },
+      zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+           specs:{
+             "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
+             "变速箱":{ "档位":"—", "驱动方式":"—" },
+             "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
+             "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           }
+      }
+    },
+
+    // ТРАКТОР 5 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
+    { id:5, img:"img/5.jpg",
+      en:{ model:"— Model —",
+           name:"— Tractor Name —",
+           desc:"— Description —",
+           specs:{
+             "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
+             "Transmission":{ "Gearbox":"—", "Drive":"—" },
+             "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
+             "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           }
+      },
+      zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+           specs:{
+             "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
+             "变速箱":{ "档位":"—", "驱动方式":"—" },
+             "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
+             "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           }
+      }
+    },
+
+    // ТРАКТОР 6 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
+    { id:6, img:"img/6.jpg",
+      en:{ model:"— Model —",
+           name:"— Tractor Name —",
+           desc:"— Description —",
+           specs:{
+             "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
+             "Transmission":{ "Gearbox":"—", "Drive":"—" },
+             "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
+             "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           }
+      },
+      zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+           specs:{
+             "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
+             "变速箱":{ "档位":"—", "驱动方式":"—" },
+             "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
+             "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           }
+      }
+    },
+
+    // ТРАКТОР 7 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
+    { id:7, img:"img/7.jpg",
+      en:{ model:"— Model —",
+           name:"— Tractor Name —",
+           desc:"— Description —",
+           specs:{
+             "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
+             "Transmission":{ "Gearbox":"—", "Drive":"—" },
+             "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
+             "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           }
+      },
+      zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+           specs:{
+             "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
+             "变速箱":{ "档位":"—", "驱动方式":"—" },
+             "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
+             "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           }
+      }
+    }
+
+  ];
+
+  const T = {
+    en:{
+      nav_about:"About", nav_catalog:"Catalog", nav_contacts:"Contacts",
+      btn_contact:"Contact Us",
+      hero_sub:"Modern Agriculture", hero_title_1:"Power for fields.",
+      hero_title_2:"Precision for business.",
+      hero_desc:"Professional tractors from WEIFANG TECTOR AGRICULTURAL EQUIPMENT CO., LTD. Reliable quality for modern farming.",
+      btn_models:"View Models", btn_price:"Get Price List",
+      stat_years:"Years Experience", stat_quality:"Quality Control",
+      stat_models:"Models", stat_support:"Support",
+      catalog_sub:"Our Equipment", catalog_title_acc:"Catalog",
+      btn_specs:"View Specs", btn_inquire:"Request a Quote",
+      cta_title:"Ready to upgrade your farm?",
+      cta_desc:"Leave a request and get a consultation from our engineers.",
+      btn_request:"Request Callback",
+      footer_name:"WEIFANG TECTOR AGRICULTURAL EQUIPMENT CO., LTD.",
+      footer_contact_h:"Contacts", footer_city:"Weifang, China",
+      footer_addr_h:"Address",
+      footer_addr:"120 METERS SOUTHWEST OF XINZHUANG VILLAGE COMMITTEE, WEICHENG, WEIFANG"
+    },
+    zh:{
+      nav_about:"关于我们", nav_catalog:"产品目录", nav_contacts:"联系方式",
+      btn_contact:"联系我们",
+      hero_sub:"现代农业装备", hero_title_1:"耕耘田野的力量",
+      hero_title_2:"助力商业精准化",
+      hero_desc:"潍坊泰克特农业装备有限公司提供的专业拖拉机。为现代农业提供可靠品质。",
+      btn_models:"查看型号", btn_price:"获取价格表",
+      stat_years:"多年经验", stat_quality:"质量控制",
+      stat_models:"多种型号", stat_support:"售后支持",
+      catalog_sub:"我们的产品", catalog_title_acc:"产品目录",
+      btn_specs:"查看规格", btn_inquire:"申请报价",
+      cta_title:"准备好升级您的农场了吗？",
+      cta_desc:"留下您的联系方式，获取我们工程师的咨询。",
+      btn_request:"申请回电",
+      footer_name:"潍坊泰克特农业装备有限公司",
+      footer_contact_h:"联系方式", footer_city:"中国 潍坊",
+      footer_addr_h:"地址",
+      footer_addr:"潍坊市潍城区新庄村委会西南120米"
+    }
+  };
+
+  let lang = 'en';
+
+  function renderCatalog() {
+    const grid = document.getElementById('catalog-grid');
+    grid.innerHTML = '';
+    tractors.forEach(t => {
+      const d = t[lang];
+      const col = document.createElement('div');
+      col.className = 'col-12 col-sm-6 col-lg-4 col-xxl-3';
+      col.innerHTML = `
+        <div class="tractor-card" onclick="openModal(${t.id})">
+          <img class="tc-img" src="${t.img}" alt="${d.name}"
+               onerror="this.style.background='#1a1a1a'">
+          <div class="tc-body">
+            <div class="tc-model">${d.model}</div>
+            <div class="tc-name">${d.name}</div>
+            <div class="tc-desc">${d.desc}</div>
+            <button class="btn-specs"
+                    onclick="event.stopPropagation();openModal(${t.id})">
+              <i class="bi bi-arrow-right-circle"></i>
+              ${T[lang].btn_specs}
+            </button>
+          </div>
+        </div>`;
+      grid.appendChild(col);
+    });
+  }
+
+  function openModal(id) {
+    const t = tractors.find(x => x.id === id);
+    const d = t[lang];
+    document.getElementById('modal-img').src          = t.img;
+    document.getElementById('modal-img').alt          = d.name;
+    document.getElementById('modal-tag').textContent  = d.model;
+    document.getElementById('modal-title-el').textContent = d.name;
+    document.getElementById('modal-desc').textContent = d.desc;
+
+    let html = '';
+    for (const [sec, rows] of Object.entries(d.specs)) {
+      html += `<div class="spec-section-title">${sec}</div>`;
+      for (const [k, v] of Object.entries(rows)) {
+        html += `<div class="spec-row">
+                   <span class="spec-label">${k}</span>
+                   <span class="spec-value">${v}</span>
+                 </div>`;
+      }
+    }
+    document.getElementById('modal-specs').innerHTML = html;
+
+    const btn = document.querySelector('#modal-overlay a[data-key="btn_inquire"]');
+    if (btn) btn.textContent = T[lang].btn_inquire;
+
+    document.getElementById('modal-overlay').classList.add('active');
+    document.querySelector('.modal-box').scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closeModalOutside(e) {
+    if (e.target.id === 'modal-overlay') closeModal();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function toggleMenu() {
+    const m = document.getElementById('mobile-menu');
+    const h = document.getElementById('hamburger');
+    m.classList.toggle('open');
+    h.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  function setLang(l) {
+    lang = l;
+    localStorage.setItem('selectedLang', l);
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const k = el.getAttribute('data-key');
+      if (T[l][k]) el.textContent = T[l][k];
+    });
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(`btn-${l}`).classList.add('active');
+    document.documentElement.lang = l;
+    renderCatalog();
+  }
+
+  setLang(localStorage.getItem('selectedLang') || 'en');
+  </script>
+</body>
+</html>
