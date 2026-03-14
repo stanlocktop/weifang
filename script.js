@@ -366,7 +366,8 @@ function renderCatalog() {
     col.className = 'col-12 col-sm-6 col-lg-4 col-xxl-3';
     col.innerHTML = `
       <div class="tractor-card" onclick="openModal(${t.id})">
-        <img class="tc-img" src="${t.img}" alt="${d.name}"
+        <img class="tc-img" src="${t.img}" alt="${d.name} — ${d.model} agricultural tractor"
+             loading="lazy" width="640" height="400"
              onerror="this.style.background='#1a1a1a'">
         <div class="tc-body">
           <div class="tc-model">${d.model}</div>
