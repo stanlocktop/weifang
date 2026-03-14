@@ -1,172 +1,313 @@
 const tractors = [
 
-  // ТРАКТОР 1 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
-  { id:1, img:"img/1.jpg",
-    en:{ model:"— Model —",      // название модели (напр. "Model TX-504")
-         name:"— Tractor Name —", // полное название (напр. "TECTOR TX-504")
-         desc:"— Description —",  // краткое описание на английском
+  // ТРАКТОР 1
+  { id:1, img:"img/TC904.jpg",
+    en:{ model:"TC 904",
+         name:"TECTOR TC 904",
+         desc:"Reliable 4-cylinder workhorse with 66.2 kW output. Designed for medium-scale farming with excellent ground clearance and a versatile multi-range gearbox.",
          specs:{
            "Engine":{
-             "Power":        "—",   //напр. "50 HP / 37 kW"
-             "Cylinders":    "—",   // напр. "4"
-             "Displacement": "—",   // напр. "2.5 L"
-             "Fuel type":    "—"    // напр. "Diesel"
+             "Power":        "66.2 kW (90 HP)",
+             "Cylinders":    "4",
+             "Displacement": "4 200 cc",
+             "Fuel type":    "Diesel"
            },
            "Transmission":{
-             "Gearbox": "—",        // напр. "8F + 8R"
-             "Drive":   "—"         // напр. "4WD"
+             "Gearbox": "(4+4)×3",
+             "Drive":   "4WD"
            },
            "Dimensions":{
-             "Weight":           "—", // напр. "2 100 kg"
-             "Wheelbase":        "—", // напр. "1 950 mm"
-             "Ground clearance": "—"  // напр. "310 mm"
+             "Weight":           "3 900 kg",
+             "Wheelbase":        "2 100 mm",
+             "Ground clearance": "490 mm"
            },
            "Hydraulics":{
-             "Lift capacity": "—",    // напр. "1 600 kg"
-             "PTO speed":     "—"     // напр. "540 / 1000 rpm"
+             "Lift capacity": "22 kN",
+             "PTO speed":     "540 / 1000 rpm"
            }
          }
     },
-    zh:{ model:"— 型号 —",       // название модели на китайском
-         name:"— 拖拉机名称 —",   // полное название на китайском
-         desc:"— 描述 —",         // описание на китайском
+    zh:{ model:"TC 904",
+         name:"TECTOR TC 904",
+         desc:"可靠的四缸拖拉机，输出功率66.2千瓦，适合中型农业作业，离地间隙大，多档变速箱灵活实用。",
          specs:{
-           "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
-           "变速箱":{ "档位":"—", "驱动方式":"—" },
-           "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
-           "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           "发动机":{ "功率":"66.2 kW (90 HP)", "气缸数":"4", "排量":"4 200 cc", "燃料类型":"柴油" },
+           "变速箱":{ "档位":"(4+4)×3", "驱动方式":"四轮驱动" },
+           "尺寸":{ "重量":"3 900 千克", "轴距":"2 100 毫米", "离地间隙":"490 毫米" },
+           "液压系统":{ "提升能力":"22 kN", "动力输出转速":"540 / 1000 转/分" }
          }
     }
   },
 
-  // ТРАКТОР 2 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
-  { id:2, img:"img/2.jpg",
-    en:{ model:"— Model —",
-         name:"— Tractor Name —",
-         desc:"— Description —",
+  // ТРАКТОР 2
+  { id:2, img:"img/TC1104.jpg",
+    en:{ model:"TC 1104",
+         name:"TECTOR TC 1104",
+         desc:"High-capacity 4-cylinder tractor with 80.9 kW. A 24-speed gearbox and heavy-duty hydraulics make it ideal for large-scale field operations.",
          specs:{
-           "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
-           "Transmission":{ "Gearbox":"—", "Drive":"—" },
-           "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
-           "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           "Engine":{
+             "Power":        "80.9 kW (110 HP)",
+             "Cylinders":    "4",
+             "Displacement": "5 030 cc",
+             "Fuel type":    "Diesel"
+           },
+           "Transmission":{
+             "Gearbox": "(12+4)×2",
+             "Drive":   "4WD"
+           },
+           "Dimensions":{
+             "Weight":           "5 030 kg",
+             "Wheelbase":        "2 300 mm",
+             "Ground clearance": "490 mm"
+           },
+           "Hydraulics":{
+             "Lift capacity": "28 kN",
+             "PTO speed":     "540 / 1000 rpm"
+           }
          }
     },
-    zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+    zh:{ model:"TC 1104",
+         name:"TECTOR TC 1104",
+         desc:"大功率四缸拖拉机，输出功率80.9千瓦，24档变速箱配合重型液压系统，适合大规模田间作业。",
          specs:{
-           "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
-           "变速箱":{ "档位":"—", "驱动方式":"—" },
-           "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
-           "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           "发动机":{ "功率":"80.9 kW (110 HP)", "气缸数":"4", "排量":"5 030 cc", "燃料类型":"柴油" },
+           "变速箱":{ "档位":"(12+4)×2", "驱动方式":"四轮驱动" },
+           "尺寸":{ "重量":"5 030 千克", "轴距":"2 300 毫米", "离地间隙":"490 毫米" },
+           "液压系统":{ "提升能力":"28 kN", "动力输出转速":"540 / 1000 转/分" }
          }
     }
   },
 
-  // ТРАКТОР 3 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
-  { id:3, img:"img/3.jpg",
-    en:{ model:"— Model —",
-         name:"— Tractor Name —",
-         desc:"— Description —",
+  // ТРАКТОР 3
+  { id:3, img:"img/TC244Е.jpg",
+    en:{ model:"TC 244E",
+         name:"TECTOR TC 244E",
+         desc:"Compact 3-cylinder tractor with 17.6 kW. Perfect for small farms, orchards and tight spaces where maneuverability is key.",
          specs:{
-           "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
-           "Transmission":{ "Gearbox":"—", "Drive":"—" },
-           "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
-           "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           "Engine":{
+             "Power":        "17.6 kW (24 HP)",
+             "Cylinders":    "3",
+             "Displacement": "1 532 cc",
+             "Fuel type":    "Diesel"
+           },
+           "Transmission":{
+             "Gearbox": "(4+1)×2",
+             "Drive":   "4WD"
+           },
+           "Dimensions":{
+             "Weight":           "1 250 kg",
+             "Wheelbase":        "2 300 mm",
+             "Ground clearance": "380 mm"
+           },
+           "Hydraulics":{
+             "Lift capacity": "12 kN",
+             "PTO speed":     "540 / 1000 rpm"
+           }
          }
     },
-    zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+    zh:{ model:"TC 244E",
+         name:"TECTOR TC 244E",
+         desc:"紧凑型三缸拖拉机，功率17.6千瓦，适合小型农场、果园及空间受限的作业环境，机动性强。",
          specs:{
-           "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
-           "变速箱":{ "档位":"—", "驱动方式":"—" },
-           "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
-           "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           "发动机":{ "功率":"17.6 kW (24 HP)", "气缸数":"3", "排量":"1 532 cc", "燃料类型":"柴油" },
+           "变速箱":{ "档位":"(4+1)×2", "驱动方式":"四轮驱动" },
+           "尺寸":{ "重量":"1 250 千克", "轴距":"2 300 毫米", "离地间隙":"380 毫米" },
+           "液压系统":{ "提升能力":"12 kN", "动力输出转速":"540 / 1000 转/分" }
          }
     }
   },
 
-  // ТРАКТОР 4 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
-  { id:4, img:"img/4.jpg",
-    en:{ model:"— Model —",
-         name:"— Tractor Name —",
-         desc:"— Description —",
+  // ТРАКТОР 4
+  { id:4, img:"img/TC244U.jpg",
+    en:{ model:"TC 244U",
+         name:"TECTOR TC 244U",
+         desc:"Versatile 24HP compact tractor built for small farm tasks. Lightweight design with 4WD traction and a reliable 3-cylinder engine.",
          specs:{
-           "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
-           "Transmission":{ "Gearbox":"—", "Drive":"—" },
-           "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
-           "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           "Engine":{
+             "Power":        "17.6 kW (24 HP)",
+             "Cylinders":    "3",
+             "Displacement": "1 532 cc",
+             "Fuel type":    "Diesel"
+           },
+           "Transmission":{
+             "Gearbox": "(4+1)×2",
+             "Drive":   "4WD"
+           },
+           "Dimensions":{
+             "Weight":           "1 250 kg",
+             "Wheelbase":        "2 300 mm",
+             "Ground clearance": "380 mm"
+           },
+           "Hydraulics":{
+             "Lift capacity": "12 kN",
+             "PTO speed":     "540 / 1000 rpm"
+           }
          }
     },
-    zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+    zh:{ model:"TC 244U",
+         name:"TECTOR TC 244U",
+         desc:"多功能24马力紧凑型拖拉机，适合小型农场作业，轻量化设计，四驱牵引力强，三缸发动机可靠耐用。",
          specs:{
-           "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
-           "变速箱":{ "档位":"—", "驱动方式":"—" },
-           "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
-           "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           "发动机":{ "功率":"17.6 kW (24 HP)", "气缸数":"3", "排量":"1 532 cc", "燃料类型":"柴油" },
+           "变速箱":{ "档位":"(4+1)×2", "驱动方式":"四轮驱动" },
+           "尺寸":{ "重量":"1 250 千克", "轴距":"2 300 毫米", "离地间隙":"380 毫米" },
+           "液压系统":{ "提升能力":"12 kN", "动力输出转速":"540 / 1000 转/分" }
          }
     }
   },
 
-  // ТРАКТОР 5 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
-  { id:5, img:"img/5.jpg",
-    en:{ model:"— Model —",
-         name:"— Tractor Name —",
-         desc:"— Description —",
+  // ТРАКТОР 5
+  { id:5, img:"img/TC244А.jpg",
+    en:{ model:"TC 244A",
+         name:"TECTOR TC 244A",
+         desc:"Entry-level 24HP tractor for everyday farm work. Simple to operate, easy to maintain, and built to last in demanding field conditions.",
          specs:{
-           "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
-           "Transmission":{ "Gearbox":"—", "Drive":"—" },
-           "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
-           "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           "Engine":{
+             "Power":        "17.6 kW (24 HP)",
+             "Cylinders":    "3",
+             "Displacement": "1 532 cc",
+             "Fuel type":    "Diesel"
+           },
+           "Transmission":{
+             "Gearbox": "(4+1)×2",
+             "Drive":   "4WD"
+           },
+           "Dimensions":{
+             "Weight":           "1 250 kg",
+             "Wheelbase":        "2 300 mm",
+             "Ground clearance": "380 mm"
+           },
+           "Hydraulics":{
+             "Lift capacity": "12 kN",
+             "PTO speed":     "540 / 1000 rpm"
+           }
          }
     },
-    zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+    zh:{ model:"TC 244A",
+         name:"TECTOR TC 244A",
+         desc:"入门级24马力拖拉机，适合日常农业作业，操作简便，维护方便，在恶劣田间条件下经久耐用。",
          specs:{
-           "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
-           "变速箱":{ "档位":"—", "驱动方式":"—" },
-           "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
-           "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           "发动机":{ "功率":"17.6 kW (24 HP)", "气缸数":"3", "排量":"1 532 cc", "燃料类型":"柴油" },
+           "变速箱":{ "档位":"(4+1)×2", "驱动方式":"四轮驱动" },
+           "尺寸":{ "重量":"1 250 千克", "轴距":"2 300 毫米", "离地间隙":"380 毫米" },
+           "液压系统":{ "提升能力":"12 kN", "动力输出转速":"540 / 1000 转/分" }
          }
     }
   },
 
-  // ТРАКТОР 6 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
-  { id:6, img:"img/6.jpg",
-    en:{ model:"— Model —",
-         name:"— Tractor Name —",
-         desc:"— Description —",
+  // ТРАКТОР 6
+  { id:6, img:"img/TC244В.jpg",
+    en:{ model:"TC 244B",
+         name:"TECTOR TC 244B",
+         desc:"Compact and agile 24HP tractor suited for vegetable farms and greenhouse operations. Lightweight with full 4WD capability.",
          specs:{
-           "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
-           "Transmission":{ "Gearbox":"—", "Drive":"—" },
-           "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
-           "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           "Engine":{
+             "Power":        "17.6 kW (24 HP)",
+             "Cylinders":    "3",
+             "Displacement": "1 532 cc",
+             "Fuel type":    "Diesel"
+           },
+           "Transmission":{
+             "Gearbox": "(4+1)×2",
+             "Drive":   "4WD"
+           },
+           "Dimensions":{
+             "Weight":           "1 250 kg",
+             "Wheelbase":        "2 300 mm",
+             "Ground clearance": "380 mm"
+           },
+           "Hydraulics":{
+             "Lift capacity": "12 kN",
+             "PTO speed":     "540 / 1000 rpm"
+           }
          }
     },
-    zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+    zh:{ model:"TC 244B",
+         name:"TECTOR TC 244B",
+         desc:"紧凑灵活的24马力拖拉机，适合蔬菜种植及温室作业，车身轻巧，具备完整四驱功能。",
          specs:{
-           "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
-           "变速箱":{ "档位":"—", "驱动方式":"—" },
-           "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
-           "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           "发动机":{ "功率":"17.6 kW (24 HP)", "气缸数":"3", "排量":"1 532 cc", "燃料类型":"柴油" },
+           "变速箱":{ "档位":"(4+1)×2", "驱动方式":"四轮驱动" },
+           "尺寸":{ "重量":"1 250 千克", "轴距":"2 300 毫米", "离地间隙":"380 毫米" },
+           "液压系统":{ "提升能力":"12 kN", "动力输出转速":"540 / 1000 转/分" }
          }
     }
   },
 
-  // ТРАКТОР 7 — заполнить: model, name (EN+ZH), desc (EN+ZH), все specs
-  { id:7, img:"img/7.jpg",
-    en:{ model:"— Model —",
-         name:"— Tractor Name —",
-         desc:"— Description —",
+  // ТРАКТОР 7
+  { id:7, img:"img/TC244ВС.jpg",
+    en:{ model:"TC 244BC",
+         name:"TECTOR TC 244BC",
+         desc:"Enhanced compact tractor with cab option. Combines the proven 24HP drivetrain with improved operator comfort for all-day use.",
          specs:{
-           "Engine":{ "Power":"—", "Cylinders":"—", "Displacement":"—", "Fuel type":"—" },
-           "Transmission":{ "Gearbox":"—", "Drive":"—" },
-           "Dimensions":{ "Weight":"—", "Wheelbase":"—", "Ground clearance":"—" },
-           "Hydraulics":{ "Lift capacity":"—", "PTO speed":"—" }
+           "Engine":{
+             "Power":        "17.6 kW (24 HP)",
+             "Cylinders":    "3",
+             "Displacement": "1 532 cc",
+             "Fuel type":    "Diesel"
+           },
+           "Transmission":{
+             "Gearbox": "(4+1)×2",
+             "Drive":   "4WD"
+           },
+           "Dimensions":{
+             "Weight":           "1 250 kg",
+             "Wheelbase":        "2 300 mm",
+             "Ground clearance": "380 mm"
+           },
+           "Hydraulics":{
+             "Lift capacity": "12 kN",
+             "PTO speed":     "540 / 1000 rpm"
+           }
          }
     },
-    zh:{ model:"— 型号 —", name:"— 拖拉机名称 —", desc:"— 描述 —",
+    zh:{ model:"TC 244BC",
+         name:"TECTOR TC 244BC",
+         desc:"配备驾驶室选项的紧凑型拖拉机，采用成熟的24马力传动系统，提升操作舒适性，适合全天连续作业。",
          specs:{
-           "发动机":{ "功率":"—", "气缸数":"—", "排量":"—", "燃料类型":"—" },
-           "变速箱":{ "档位":"—", "驱动方式":"—" },
-           "尺寸":{ "重量":"—", "轴距":"—", "离地间隙":"—" },
-           "液压系统":{ "提升能力":"—", "动力输出转速":"—" }
+           "发动机":{ "功率":"17.6 kW (24 HP)", "气缸数":"3", "排量":"1 532 cc", "燃料类型":"柴油" },
+           "变速箱":{ "档位":"(4+1)×2", "驱动方式":"四轮驱动" },
+           "尺寸":{ "重量":"1 250 千克", "轴距":"2 300 毫米", "离地间隙":"380 毫米" },
+           "液压系统":{ "提升能力":"12 kN", "动力输出转速":"540 / 1000 转/分" }
+         }
+    }
+  },
+
+  // ТРАКТОР 8
+  { id:8, img:"img/TC1304.jpg",
+    en:{ model:"TC 1304",
+         name:"TECTOR TC 1304",
+         desc:"Flagship 6-cylinder tractor delivering 95.6 kW. Built for the most demanding agricultural tasks with maximum lift capacity and high ground clearance.",
+         specs:{
+           "Engine":{
+             "Power":        "95.6 kW (130 HP)",
+             "Cylinders":    "6",
+             "Displacement": "7 700 cc",
+             "Fuel type":    "Diesel"
+           },
+           "Transmission":{
+             "Gearbox": "(4+1)×3×2",
+             "Drive":   "4WD"
+           },
+           "Dimensions":{
+             "Weight":           "5 200 kg",
+             "Wheelbase":        "2 300 mm",
+             "Ground clearance": "490 mm"
+           },
+           "Hydraulics":{
+             "Lift capacity": "30 kN",
+             "PTO speed":     "540 / 1000 rpm"
+           }
+         }
+    },
+    zh:{ model:"TC 1304",
+         name:"TECTOR TC 1304",
+         desc:"旗舰六缸拖拉机，输出功率95.6千瓦，专为最高强度农业作业设计，提升能力强，离地间隙大，性能卓越。",
+         specs:{
+           "发动机":{ "功率":"95.6 kW (130 HP)", "气缸数":"6", "排量":"7 700 cc", "燃料类型":"柴油" },
+           "变速箱":{ "档位":"(4+1)×3×2", "驱动方式":"四轮驱动" },
+           "尺寸":{ "重量":"5 200 千克", "轴距":"2 300 毫米", "离地间隙":"490 毫米" },
+           "液压系统":{ "提升能力":"30 kN", "动力输出转速":"540 / 1000 转/分" }
          }
     }
   }
